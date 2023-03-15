@@ -2,6 +2,9 @@
 import { useTheme } from 'next-themes';
 import MenuItem from './MenuItem';
 import { AiFillHome, AiFillInfoCircle } from 'react-icons/ai';
+import { MdLocalMovies } from 'react-icons/md';
+import { BsFillFilePersonFill } from 'react-icons/bs'
+import { CgScreen } from 'react-icons/cg';
 import Link from 'next/link';
 import Image from 'next/image';
 import LogoLt from '../assets/EntSpotLT.png';
@@ -29,6 +32,9 @@ export default function Header() {
 
                 <div className='flex '>
                     <MenuItem title="HOME" address="/" Icon={AiFillHome} />
+                    <MenuItem title="MOVIES" address="/movies" Icon={MdLocalMovies} />
+                    <MenuItem title="TV" address="/tv" Icon={CgScreen} />
+                    <MenuItem title="PEOPLE" address="/people" Icon={BsFillFilePersonFill} />
                     <MenuItem title="ABOUT" address="/about" Icon={AiFillInfoCircle} />
                 </div>
 
