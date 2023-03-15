@@ -9,7 +9,7 @@ export default function DarkModeSwitch() {
     
     const { systemTheme, theme, setTheme} = useTheme();
     
-    // SETTING DARK MODE SWITCH HANDLING
+    //SETTING DARK MODE SWITCH HANDLING
     useEffect(() => {
         setMounted(true);
     }, [])
@@ -21,11 +21,11 @@ export default function DarkModeSwitch() {
             {
                 mounted && currentTheme === "dark" ? 
                 (
-                    <MdLightMode className="text-xl cursor-pointer hover:text-amber-500"onClick={() => setTheme("light")}/>
+                    <MdLightMode className="text-2xl cursor-pointer hover:text-amber-500"onClick={() => setTheme("light")}/>
                 ) 
                 :
                 (
-                    <BsFillMoonFill className="text-xl cursor-pointer hover:text-amber-500"onClick={() => setTheme("dark")}/>
+                    <BsFillMoonFill className="text-2xl cursor-pointer hover:text-amber-500"onClick={() => setTheme("dark")}/>
                 )
             }
             

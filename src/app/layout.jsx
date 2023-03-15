@@ -12,8 +12,9 @@ export default function RootLayout({ children }) {
           {/* Header*/}
           <Header/>
 
-          {/*NavBar */}
+          {/*SearchBox*/}
           <Navbar />
+
           {/*SearchBox*/}
 
 

@@ -1,7 +1,7 @@
 "use client";
 import { useTheme } from 'next-themes';
 import MenuItem from './MenuItem';
-import { AiFillHome, AiFillInfoCircle } from 'react-icons/ai';
+import { AiFillInfoCircle } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
 import { BsFillFilePersonFill } from 'react-icons/bs'
 import { CgScreen } from 'react-icons/cg';
@@ -17,10 +17,6 @@ export default function Header() {
 
     const { systemTheme, theme} = useTheme();
 
-    
-
-    
-
     // SETTING DARK MODE SWITCH FOR APP LOGO
     useEffect(() => {
         setMounted(true);
@@ -31,10 +27,9 @@ export default function Header() {
         <div className='flex justify-between mx-2 max-w-6x1 sm:mx-auto items-center py-6'>
 
                 <div className='flex '>
-                    <MenuItem title="HOME" address="/" Icon={AiFillHome} />
                     <MenuItem title="MOVIES" address="/movies" Icon={MdLocalMovies} />
-                    <MenuItem title="TV" address="/tv" Icon={CgScreen} />
-                    <MenuItem title="PEOPLE" address="/people" Icon={BsFillFilePersonFill} />
+                    {/* <MenuItem title="TV" address="/tv" Icon={CgScreen} />
+                    <MenuItem title="PEOPLE" address="/people" Icon={BsFillFilePersonFill} /> */}
                     <MenuItem title="ABOUT" address="/about" Icon={AiFillInfoCircle} />
                 </div>
 
