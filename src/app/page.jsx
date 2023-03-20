@@ -31,9 +31,9 @@ export default function Home() {
   
   return (
     <div className=''>
-      <Navbar titleOne={"DAY"} paramOne={"trendayDay"} setterOne={setTrendingDay} titleTwo={"WEEK"} paramTwo={"trendingWeek"} setterTwo={setTrendingWeek} />
+      <Navbar titleOne={"DAY"} variable={trendingTime} paramOne={"trendingDay"} setterOne={setTrendingDay} titleTwo={"WEEK"} paramTwo={"trendingWeek"} setterTwo={setTrendingWeek} />
       <div className='flex justify-center mt-6'>
-        <h1 className='sm:text-3xl text-2xl'>Trending { trendingTime === "day" ? "Day" : "Week"}</h1>
+        <h1 className='sm:text-3xl text-2xl'>Top 5 Trending All Categories</h1>
       </div>
       <div className=''>
 
