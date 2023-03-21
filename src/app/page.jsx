@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import { Inter } from 'next/font/google'
+import MovieCard from '@/components/MovieCard';
 
 
 
@@ -25,7 +26,7 @@ export default function Home() {
     .then((r) => r.json())
     .then((data) => {setTrendingMovies(data)})
     
-    console.log(trendingMovies)
+    
   }, [trendingTime])
   
   
@@ -35,8 +36,13 @@ export default function Home() {
       <div className='flex justify-center mt-6'>
         <h1 className='sm:text-3xl text-2xl'>Top 5 Trending All Categories</h1>
       </div>
-      <div className=''>
-
+      <div className='mt-8 grid grid-cols-4 gap-2'>
+        {trendingMovies.results && trendingMovies.results.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            props={movie}
+            />
+        ))}
       </div>
     </div>
     
