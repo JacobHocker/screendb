@@ -1,7 +1,6 @@
 "use client"
 import {useState, useEffect } from 'react';
 
-
 export default function MoviePage({ params }) {
     const [movie, setMovie] = useState({});
     const movieId = params.id;
@@ -11,13 +10,17 @@ export default function MoviePage({ params }) {
         .then((r) => r.json())
         .then((data) => { setMovie(data)})
 
-        console.log(movie)
+        
     }, [movieId])
 
-    
+
     return (
-        <div className="">
-            <h1>{movie.title}</h1>
+        <div className="mt-8">
+            <div className="flex flex-col items-center">
+                <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${movie.poster_path || movie.backdrop_path}`} alt={`${movie.title}`} className="w-28" />
+                <h1 className='text-3xl font-bold'>{movie.title}</h1>
+            </div>
+            
         </div>
     )
 }
