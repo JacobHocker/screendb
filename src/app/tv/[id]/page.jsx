@@ -2,6 +2,8 @@
 
 export default function TvPage() {
     return (
-        <div>page</div>
+        <div>
+            <h1>TV Page</h1>
+        </div>
     )
 }

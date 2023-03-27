@@ -1,4 +1,5 @@
 "use client"
+import Image from 'next/image';
 import {useState, useEffect } from 'react';
 
 export default function MoviePage({ params }) {
@@ -13,13 +14,34 @@ export default function MoviePage({ params }) {
         
     }, [movieId])
 
-
+    console.log(movie)
     return (
-        <div className="mt-8">
-            <div className="flex flex-col items-center">
-                <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${movie.poster_path || movie.backdrop_path}`} alt={`${movie.title}`} className="w-28" />
-                <h1 className='text-3xl font-bold'>{movie.title}</h1>
+        <div className='w-full'>
+            {
+            movie.title && 
+            <div className='mt-8'>
+                <div className='p-4 md:pt-8 flex flex-col md:flex-row items-center content-center max-w-6xl mx-auto md:space-x-6'>
+                    <Image src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${movie.backdrop_path || movie.poster_path}`} 
+                    width={500}
+                    height={300}
+                    className="rounded-lg"
+                    style={{
+                        maxWidth: "100%",
+                        height: "100%",
+                    }}
+                    placeholder="blur"
+                    blurDataURL="/spinner.svg"
+                    alt="Movie poster"></Image>
+                    <h1>{movie.title}</h1>
+                </div>
+                <div className='mt-8'>
+                    <p></p>
+                </div>
+
+
             </div>
+            }
+            
             
         </div>
     )

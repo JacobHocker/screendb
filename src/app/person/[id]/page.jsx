@@ -1,7 +1,8 @@
 
-
 export default function PersonPage() {
     return (
-        <div>page</div>
+        <div>
+            <h1>Person Page</h1>
+        </div>
     )
 }
