@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaImdb } from 'react-icons/fa';
 import {useState, useEffect } from 'react';
+import CreditsCarousel from '@/components/CreditsCarousel';
 
 export default function MoviePage({ params }) {
     const [movie, setMovie] = useState({});
@@ -112,10 +113,23 @@ export default function MoviePage({ params }) {
                         </Link>
                     </p>
                 </div>
-                <div className=''>
+                {/* <div className='mt-8 flex flex-col items-center'>
                     <h1>Cast</h1>
+                        {credits.cast && credits.cast.map((cast) => (
+                            <CreditsCard
+                                key={cast.id}
+                                id={cast.id}
+                                role={cast.character}
+                                gender={cast.gender}
+                                profilePath={cast.profile_path}
+                                name={cast.name}
+                            />
+                        ))}
+                </div> */}
+                <div className='mt-8'>
+                    <h1>Cast:</h1>
+                    <CreditsCarousel props={credits.cast} />
                 </div>
-
             </div>
             }
             
