@@ -113,21 +113,11 @@ export default function MoviePage({ params }) {
                         </Link>
                     </p>
                 </div>
-                {/* <div className='mt-8 flex flex-col items-center'>
-                    <h1>Cast</h1>
-                        {credits.cast && credits.cast.map((cast) => (
-                            <CreditsCard
-                                key={cast.id}
-                                id={cast.id}
-                                role={cast.character}
-                                gender={cast.gender}
-                                profilePath={cast.profile_path}
-                                name={cast.name}
-                            />
-                        ))}
-                </div> */}
+                
                 <div className='mt-8'>
-                    <h1>Cast:</h1>
+                    <div className='flex items-center justify-center my-4'>
+                        <h1 className='font-bold text-lg items-center'>Cast:</h1>
+                    </div>
                     <CreditsCarousel props={credits.cast} />
                 </div>
             </div>

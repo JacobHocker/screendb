@@ -12,32 +12,37 @@ export default function CreditsCarousel({ props }) {
     const responsive = {
         xxl: {
             breakpoint: { max: 4000, min: 1536 },
-            items: 7
+            items: 8
         },
         xl: {
             breakpoint: { max: 1536, min: 1280 },
-            items: 6
+            items: 7
         },
         lg: {
             breakpoint: { max: 1280, min: 1024 },
-            items: 5
+            items: 6
         },
         md: {
             breakpoint: { max: 1024, min: 768 },
-            items: 4
+            items: 5
         },
         sm: {
             breakpoint: { max: 768, min: 640 },
+            items: 4
+        },
+        xsm: {
+            breakpoint: { max: 640, min: 400 },
             items: 3
         },
         base: {
-            breakpoint: { max: 640, min: 0 },
+            breakpoint: { max: 400, min: 0 },
             items: 2
         }
     };
     return (
         
         <div className="px-4">
+            { props && 
             <Carousel
                 swipeable={true}
                 draggable={true}
@@ -62,6 +67,7 @@ export default function CreditsCarousel({ props }) {
                 ))
                 }
             </Carousel>
+            }
         </div>
     );
 }
