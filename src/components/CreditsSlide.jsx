@@ -10,7 +10,7 @@ export default function CreditsSlide({ props }) {
         
         <div className='px-2'>
             <Link href={`/person/${props.id}`}>
-                <div className="flex flex-shrink-0 relative w-full hover:cursor-pointer hover:shadow-sm dark:hover:shadow-slate-500 hover:shadow-amber-700 transition-shadow duration-200 hover:border-2 border-amber-700 dark:border-amber-500">
+                <div className="flex flex-shrink-0 relative w-full hover:cursor-pointer hover:shadow-sm dark:hover:shadow-slate-500 hover:shadow-amber-600 transition-shadow duration-200 hover:border-2 border-amber-600 dark:border-amber-500">
                     {
                         props.profile_path !== null ?
                     
