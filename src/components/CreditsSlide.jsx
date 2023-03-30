@@ -2,8 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import Empty from '../assets/emptyProfile.jpg';
 import Link from 'next/link';
-// import NoGenderEmpty from '../assets/genderlessEmptyProfile.png';
-// import FemaleEmpty from '../assets/femaleEmptyProfile.webp';
 
 
 
@@ -12,7 +10,7 @@ export default function CreditsSlide({ props }) {
         
         <div className='px-2'>
             <Link href={`/person/${props.id}`}>
-                <div className="flex flex-shrink-0 relative w-full hover:cursor-pointer hover:shadow-sm shadow-slate-500 dark:shadow-rose-600 transition-shadow duration-200 hover:border-2 border-slate-500 dark:border-rose-600">
+                <div className="flex flex-shrink-0 relative w-full hover:cursor-pointer hover:shadow-sm dark:hover:shadow-slate-500 hover:shadow-amber-700 transition-shadow duration-200 hover:border-2 border-amber-700 dark:border-amber-500">
                     {
                         props.profile_path !== null ?
                     

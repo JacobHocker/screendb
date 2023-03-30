@@ -93,7 +93,7 @@ export default function MoviePage({ params }) {
                         
                     </div>
                 </div>
-                <div className='p-4 w-full  md:w-9/12 bg-rose-200 dark:bg-gray-600 md:mt-16 md:p-6 grid grid-cols-2  justify-items-center md:mx-auto md:rounded-lg'>
+                <div className='p-4 w-full  md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 grid grid-cols-2  justify-items-center md:mx-auto md:rounded-lg'>
                     <p className='mb-3 md:text-lg flex items-center content-center'>
                         <span className='font-semibold mr-1'>Budget:</span>
                         ${currency(movie.budget)} USD
@@ -114,13 +114,13 @@ export default function MoviePage({ params }) {
                     </p>
                 </div>
                 
-                <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-amber-200 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+                <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-300 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
                     <div className='flex items-center justify-center my-4'>
                         <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Cast:</h1>
                     </div>
                     <CreditsCarousel props={credits.cast} />
                 </div>
-                <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-rose-200 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+                <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-300 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
                     <div className='flex items-center justify-center my-4'>
                         <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Crew:</h1>
                     </div>
