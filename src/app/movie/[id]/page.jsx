@@ -24,7 +24,7 @@ export default function MoviePage({ params }) {
         .then((data) => { setCredits(data)})
     }, [movieId])
 
-    console.log(credits)
+    console.log(movie)
 
     // Converting the raw minute number to hours and minutes
     const timeConvert = (num) => {
@@ -88,7 +88,7 @@ export default function MoviePage({ params }) {
                         </p>
                         <p className="mb-3 md:text-lg">
                             <span className="font-semibold mr-1">Audience Rating:</span>
-                            <span className={movieRating === 100 ? 'text-emerald-600 dark:text-emerald-400' : movieRating <= 99 && movieRating >= 90 ? 'text-amber-600 dark:text-amber-400' : movieRating <= 89 && movieRating >= 80 ? 'text-blue-600 dark:text-blue-400'  : movieRating <= 79 && movieRating >= 70 ? 'text-yellow-600 dark:text-yellow-400' : 'text-red-600 dark:text-red-400' }>{movieRating}%</span>
+                            <span className={movieRating === 100 ? 'text-emerald-600 dark:text-emerald-400 font-bold ' : movieRating <= 99 && movieRating >= 90 ? 'text-amber-600 dark:text-amber-400 font-bold ' : movieRating <= 89 && movieRating >= 80 ? 'text-blue-600 dark:text-blue-400 font-bold '  : movieRating <= 79 && movieRating >= 70 ? 'text-yellow-600 dark:text-yellow-400 font-bold ' : 'text-red-600 dark:text-red-400 font-bold ' }>{movieRating}%</span>
                         </p>
                         
                     </div>
@@ -109,7 +109,7 @@ export default function MoviePage({ params }) {
                     <p className='mb-3 md:text-lg flex items-center content-center'>
                         <span className='font-semibold mr-2'>Official Page:</span>
                         <Link href={`https://imdb.com/title/${movie.imdb_id}/`} target="_blank">
-                            <FaImdb  className='text-2xl md:text-4xl hover:text-rose-600'/>
+                            <FaImdb  className='text-2xl md:text-4xl hover:text-amber-500'/>
                         </Link>
                     </p>
                 </div>

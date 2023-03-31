@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Empty from '../assets/emptyProfile.jpg';
+import Empty from '../assets/emptyThree.svg';
 import Link from 'next/link';
 
 
@@ -10,7 +10,7 @@ export default function CreditsSlide({ props }) {
         
         <div className='px-2'>
             <Link href={`/person/${props.id}`}>
-                <div className="flex flex-shrink-0 relative w-full hover:cursor-pointer hover:shadow-sm dark:hover:shadow-slate-500 hover:shadow-amber-600 transition-shadow duration-200 hover:border-2 border-amber-600 dark:border-amber-500">
+                <div className="flex flex-shrink-0 relative w-full h-full hover:cursor-pointer hover:shadow-sm dark:hover:shadow-slate-500 hover:shadow-amber-600 transition-shadow duration-200 hover:border-2 border-amber-600 dark:border-amber-500">
                     {
                         props.profile_path !== null ?
                     
@@ -18,12 +18,12 @@ export default function CreditsSlide({ props }) {
                             alt={props.name} className="object-cover object-center w-full" />
                             :
                         <Image src={Empty}
-                            alt="empty" className=" w-auto h-auto" />
+                            alt="empty" className="w-full h-full" />
                     }
                     <div className="bg-gray-800 flex   bg-opacity-50 absolute w-full bottom-0">
-                        <div className="flex flex-col w-full h-3/6 items-center px-4">
-                            <h3 className="line-clamp-1 text-xsm/4 lg:text-xl font-semibold leading-5 lg:leading-6 text-white">{props.character || props.job}</h3>
-                            <h2 className=" truncate lg:text-lg text-sm leading-4 lg:leading-5 text-white">{props.name}</h2>
+                        <div className="flex flex-col w-full h-3/6 items-center px-2 text-center">
+                            <h3 className="line-clamp-1 text-xsm/4 lg:text-lg font-semibold leading-5 lg:leading-6 text-white">{props.character || props.job}</h3>
+                            <h2 className="truncate-ellipsis lg:text-lg text-sm leading-4 lg:leading-5 text-white">{props.name}</h2>
                         </div>
                     </div>
                 </div>
