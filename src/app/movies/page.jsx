@@ -1,21 +1,26 @@
 "use client"
-import Navbar from '@/components/HomeNav';
+import Pagination from '@/components/Pagination';
 import SearchBox from '@/components/SearchBox';
 import SearchResults from '@/components/SearchResults';
 import {useState, useEffect} from 'react';
+
 
 export default function Movies() {
     const [movies, setMovies] = useState({});
     const [pageNumber, setPageNumber] = useState(1);
     const [movieCategory, setMovieCategory] = useState("top_rated");
+    
 
+
+    // FETCHING WHAT IS DISPLAYED ON THE MOVIE PAGE
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}movie/${movieCategory}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=${pageNumber}`)
         .then((res) => res.json()
         )
         .then((data) => {setMovies(data)})
-    }, [movieCategory])
+    }, [movieCategory, pageNumber])
 
+    // SELECT DROPDOWN OPTIONS
     const movieCategoryList = [
         {
             id: 0,
@@ -40,11 +45,13 @@ export default function Movies() {
         
     ];
 
+    
+
 
     return (
         <div>
             <SearchBox />
-            <div className="mt-20 p-2 flex w-full justify-evenly ">
+            <div className="mt-16 p-2 flex w-full justify-start ">
                 <select 
                 className='font-bold bg-transparent text-md md:text-xl lg:text-2xl border-2 rounded-sm hover:border-amber-400 hover:cursor-pointer border-slate-600'
                 value={movieCategory}
@@ -58,24 +65,27 @@ export default function Movies() {
                             {cat.title}
                         </option>
                     ))}
-                </select>
+                </select> 
+            </div>
+            <div className='w-full flex justify-center mt-6'>
                 {
                     movieCategory === "top_rated" 
                         ? 
-                        <h1 className="text-lg md:text-2xl lg:text-4xl font-semibold">Top Rated Movies</h1>
+                        <h1 className="text-3xl  lg:text-4xl font-semibold">Top Rated Movies</h1>
                         :
                         movieCategory === "popular" 
                         ?
-                        <h1 className="text-lg md:text-2xl lg:text-4xl font-semibold">Popular Movies</h1>
+                        <h1 className="text-3xl  lg:text-4xl font-semibold">Popular Movies</h1>
                         :
                         movieCategory === "now_playing"
                         ?
-                        <h1 className="text-lg md:text-2xl lg:text-4xl font-semibold">Movies Now Playing</h1>
+                        <h1 className="text-3xl  lg:text-4xl font-semibold">Movies Now Playing</h1>
                         :
-                        <h1 className="text-lg md:text-2xl lg:text-4xl font-semibold">Upcoming Movies</h1>
-
-                } 
+                        <h1 className="text-3xl  lg:text-4xl font-semibold">Upcoming Movies</h1>
+                }
             </div>
+            <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
+
             {movies.results && <SearchResults props={movies.results} />}
         </div>
     )
