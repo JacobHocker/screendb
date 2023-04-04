@@ -66,8 +66,8 @@ export default function Pagination({ pageNumber, setPageNumber, }) {
             <ul className=' flex list-none'>
             {
                 paginateRange === 2 ? 
-                <li onClick={() => { setPaginateRange(1)}} className={`font-semibold p-1 border border-slate-900 items-center`}>
-                    <TbPlayerTrackPrev />
+                <li onClick={() => { setPaginateRange(1)}} className={` flex items-center font-semibold hover:bg-amber-300 dark:hover:bg-amber-500 p-1 border border-slate-900 dark:border-slate-300`}>
+                    <TbPlayerTrackPrev className=' text-lg' />
                 </li>
                 :
                 <li>{" "}</li>
@@ -76,7 +76,7 @@ export default function Pagination({ pageNumber, setPageNumber, }) {
                 paginateRange === 1 ?
                 paginateOne.map((p) => (
                     
-                    <li key={p.id} className={`font-semibold p-1 border border-slate-900 ${pageNumber === p.title ? 'bg-amber-300' : 'bg-transparent'}`} onClick={() => { setPageNumber(p.title)}}>
+                    <li key={p.id} className={`font-semibold p-2 border cursor-pointer hover:bg-amber-300 dark:hover:bg-amber-500 border-slate-900 dark:border-slate-300 md:text-lg lg:text-xl ${pageNumber === p.title ? 'bg-slate-400 dark:bg-slate-500' : 'bg-transparent'}`} onClick={() => { setPageNumber(p.title)}}>
                         {p.title}
                     </li>
                     
@@ -84,7 +84,7 @@ export default function Pagination({ pageNumber, setPageNumber, }) {
                 :
                 paginateTwo.map((p) => (
                     
-                    <li key={p.id} onClick={() => { setPageNumber(p.value)}} className={`font-semibold p-1 border border-slate-900 ${pageNumber === p.title ? 'bg-amber-300' : 'bg-transparent'}`}>
+                    <li key={p.id} onClick={() => { setPageNumber(p.value)}} className={`font-semibold p-2 border cursor-pointer hover:bg-amber-300 dark:hover:bg-amber-500 border-slate-900 dark:border-slate-300 md:text-lg lg:text-xl ${pageNumber === p.title ? 'bg-slate-400 dark:bg-slate-500' : 'bg-transparent'}`}>
                         {p.title}
                     </li>
                     
@@ -92,8 +92,8 @@ export default function Pagination({ pageNumber, setPageNumber, }) {
             }
             {
                 paginateRange === 1 ? 
-                <li onClick={() => {setPaginateRange(2)}} className={`font-semibold p-1 border border-slate-900 `}>
-                    <TbPlayerTrackNext />
+                <li onClick={() => {setPaginateRange(2)}} className={` flex items-center font-semibold hover:bg-amber-300 dark:hover:bg-amber-500 p-1 border border-slate-900 dark:border-slate-300`}>
+                    <TbPlayerTrackNext className=' text-lg'/>
                 </li>
                 :
                 <li>{" "}</li>
