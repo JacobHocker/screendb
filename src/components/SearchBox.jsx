@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 export default function SearchBox() {
     const [search, setSearch] = useState("");
+
     const router = useRouter();
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,14 +15,14 @@ export default function SearchBox() {
     return (
     <form
         onSubmit={handleSubmit}
-        className="flex max-w-6xl mx-auto justify-between items-center px-5"
+        className="flex max-w-2xl mx-auto border-2 border-slate-600 dark:border-slate-200 border-opacity-50 dark:border-opacity-50 rounded-md justify-between items-center px-5"
     >
     <input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         type="text"
-        placeholder="Search keywords..."
-        className="w-full h-14 rounded-sm placeholder-gary-500 outline-none bg-transparent flex-1"
+        placeholder="Search Movies..."
+        className="w-full h-14 rounded-sm placeholder-gray-500 outline-none bg-transparent flex-1"
     />
         <button
             disabled={!search}

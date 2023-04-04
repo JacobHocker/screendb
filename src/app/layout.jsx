@@ -1,7 +1,7 @@
 import './globals.css'
 import Header from "@/components/Header";
 import Providers from './Providers';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/HomeNav';
 
 
 export default function RootLayout({ children }) {

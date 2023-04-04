@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/HomeNav';
 import { Inter } from 'next/font/google'
 import HomeCard from '@/components/HomeCard';
 
