@@ -93,6 +93,8 @@ export default function MoviePage({ params }) {
                         
                     </div>
                 </div>
+
+                {/* MOVIE METRICS */}
                 <div className='p-4 w-full  md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 grid grid-cols-2  justify-items-center md:mx-auto md:rounded-lg'>
                     <p className='mb-3 md:text-lg flex items-center content-center'>
                         <span className='font-semibold mr-1'>Budget:</span>
@@ -114,12 +116,17 @@ export default function MoviePage({ params }) {
                     </p>
                 </div>
                 
+                {/* CAST CAROUSEL */}
                 <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
                     <div className='flex items-center justify-center my-4'>
                         <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Cast:</h1>
                     </div>
                     <CreditsCarousel props={credits.cast} />
                 </div>
+
+                
+
+                {/* MOVIE CREW CAROUSEL */}
                 <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
                     <div className='flex items-center justify-center my-4'>
                         <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Crew:</h1>
@@ -129,6 +136,70 @@ export default function MoviePage({ params }) {
             </div>
             }
             
+            {/* MOVIE PAGE GENRE SECTION */}
+            <div className='p-4 w-full  mt-8 md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 flex flex-col  items-center md:mx-auto md:rounded-lg'>
+                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Genres:</h1>
+                <div>
+                    <ul className=' grid grid-cols-2 gap-8 mt-4'>
+                        { 
+                        movie.genres && movie.genres.map((genre) => (
+                            <Link href={`/genre/${genre.id}`}>
+                                <li key={genre.id} className='text-lg lg:text-xl hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
+                                    {genre.name}
+                                </li>
+                            </Link>
+                        ))
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            {/* MOVIE COLLECTIONS SECTION */}
+            <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+                    <h1>Movie Collection Placeholder</h1>
+            </div>
+
+
+            {/* MOVIE PAGE PRODUCTION COMPANIES & LANGUAGES SECTION */}
+            <div className='p-4 w-full  mt-8 md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 flex flex-col  items-center md:mx-auto md:rounded-lg'>
+                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Produced By:</h1>
+                <div>
+                    <ul className=' grid grid-cols-2 gap-8 mt-4'>
+                        { 
+                        movie.production_companies && movie.production_companies.map((comp) => (
+                            <Link href={`/company/${comp.id}`}>
+                                <li key={comp.id} className='text-lg lg:text-xl flex flex-col items-center hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
+                                    <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${comp.logo_path}`} alt={comp.name} className='' />
+                                    <h1>{comp.name}</h1>
+                                </li>
+                            </Link>
+                        ))
+                        }
+                    </ul>
+                </div>
+                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl mt-6'>Languages:</h1>
+                <div>
+                    <ul className=' grid grid-cols-2 gap-8 mt-4'>
+                        { 
+                        movie.spoken_languages && movie.spoken_languages.map((lang) => (
+                            <li key={lang.id} className='text-lg lg:text-xl '>
+                                {lang.english_name}
+                            </li>
+                        ))
+                        }
+                    </ul>
+                </div>
+            </div>
+            
+            {/* MOVIE IMAGES SECTION*/}
+            <div className='mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+                <h1>Movie Images Placeholder</h1>
+            </div>
+
+            {/* MOVIE SIMILAR/ RECCOMENDED SECTION*/}
+            <div className='mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+                <h1>Movie Recommend Placeholder</h1>
+            </div>
             
         </div>
     )
