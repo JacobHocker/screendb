@@ -1,9 +1,11 @@
 
+
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import MovieSlide from './MovieSlide';
 
 
-export default function ImageCarousel({ props }) {
+export default function MovieCarousel({ props }) {
 
     const responsive = {
         xxl: {
@@ -46,6 +48,8 @@ export default function ImageCarousel({ props }) {
                 responsive={responsive}
                 
                 infinite={true}
+                
+                
                 keyBoardControl={true}
                 customTransition="all .5"
                 transitionDuration={500}
@@ -54,7 +58,7 @@ export default function ImageCarousel({ props }) {
                 itemClass="carousel-item-margin-left-40px-margin-right-40px"
                 >
                 {props && props.map((prop) => (
-                    <CreditsSlide 
+                    <MovieSlide 
                         key={prop.id}
                         props={prop}
                         />

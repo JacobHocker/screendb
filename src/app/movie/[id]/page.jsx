@@ -5,10 +5,13 @@ import emptyCompany from "../../../assets/emptyCompany.png";
 import { FaImdb } from 'react-icons/fa';
 import {useState, useEffect } from 'react';
 import CreditsCarousel from '@/components/CreditsCarousel';
+import MovieCarousel from '@/components/MovieCarousel';
+
 
 export default function MoviePage({ params }) {
     const [movie, setMovie] = useState({});
     const [credits, setCredits] = useState([]);
+    const [related, setRelated] = useState({});
     const movieId = params.id;
 
     // Fetching the movie information from the database
@@ -18,15 +21,21 @@ export default function MoviePage({ params }) {
         .then((data) => { setMovie(data)})
     }, [movieId])
 
-    // Fetching the movie information from the database
+    // Fetching the movie credits information from the database
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}movie/${movieId}/credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
         .then((r) => r.json())
         .then((data) => { setCredits(data)})
     }, [movieId])
 
-    console.log(movie)
+    // Fetching the related movies from the database
+    useEffect(() => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}movie/${movieId}/recommendations?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
+        .then((r) => r.json())
+        .then((data) => { setRelated(data)})
+    }, [movieId])
 
+    
     // Converting the raw minute number to hours and minutes
     const timeConvert = (num) => {
         const hours = Math.floor(num / 60);
@@ -121,7 +130,7 @@ export default function MoviePage({ params }) {
                 {/* CAST CAROUSEL */}
                 <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
                     <div className='flex items-center justify-center my-4'>
-                        <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Cast:</h1>
+                        <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Cast</h1>
                     </div>
                     <CreditsCarousel props={credits.cast} />
                 </div>
@@ -131,7 +140,7 @@ export default function MoviePage({ params }) {
                 {/* MOVIE CREW CAROUSEL */}
                 <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
                     <div className='flex items-center justify-center my-4'>
-                        <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Crew:</h1>
+                        <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Crew</h1>
                     </div>
                     <CreditsCarousel props={credits.crew} />
                 </div>
@@ -140,7 +149,7 @@ export default function MoviePage({ params }) {
             
             {/* MOVIE PAGE GENRE SECTION */}
             <div className='p-4 w-full  mt-8 md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 flex flex-col  items-center md:mx-auto md:rounded-lg'>
-                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Genres:</h1>
+                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Genres</h1>
                 <div className='w-full p-4 md:p-6'>
                     <ul className='  grid grid-cols-2  justify-items-center '>
                         { 
@@ -162,7 +171,7 @@ export default function MoviePage({ params }) {
             <></>
             :
             <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 flex flex-col items-center md:mx-auto md:rounded-lg'>
-                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Collection:</h1>
+                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Collection</h1>
                 { movie.belongs_to_collection && 
                 <Link href={`/collection/${movie.belongs_to_collection.id}`}>
                     <Image
@@ -170,7 +179,7 @@ export default function MoviePage({ params }) {
                     width={500}
                     height={300}
                     quality='100'
-                    className="rounded-lg mt-8"
+                    className="rounded-lg mt-8 hover:border-2 border-amber-600 dark:border-amber-500"
                     style={{
                         maxWidth: "100%",
                         height: "100%",
@@ -186,27 +195,27 @@ export default function MoviePage({ params }) {
 
             {/* MOVIE PAGE PRODUCTION COMPANIES & LANGUAGES SECTION */}
             <div className='p-4 w-full  mt-8 md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 flex flex-col  items-center md:mx-auto md:rounded-lg'>
-                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Produced By:</h1>
+                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Produced By</h1>
                 <div className='w-full p-4 md:p-6'>
                     <ul className=' grid grid-cols-2 justify-items-center'>
                         { 
                         movie.production_companies && movie.production_companies.map((comp) => (
                             <Link href={`/company/${comp.id}`}>
-                                <li key={comp.id} className='text-xl lg:text-2xl flex flex-col items-center hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
+                                <li key={comp.id} className='text-xl lg:text-2xl flex flex-col justify-center items-center hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
                                     {
                                         comp.logo_path === null ? 
-                                        <Image src={emptyCompany} width={200} height={100} style={{ maxWidth: "100%", maxHeight:"100%"}} className='w-40 sm:w-48 md:w-52' ></Image>
+                                        <Image src={emptyCompany} width={200} height={100} style={{ maxWidth: "100%", maxHeight:"25%"}} className='w-40 sm:w-48 md:w-52' ></Image>
                                         :
-                                        <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${comp.logo_path}`} alt={comp.name} className='w-40 sm:w-48 md:w-52' />
+                                        <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${comp.logo_path}`} alt={comp.name} className='w-40 sm:w-48 md:w-52 ' />
                                     }
-                                    <h1>{comp.name}</h1>
+                                    <h1 className='p-2 text-lg md:text-2xl'>{comp.name}</h1>
                                 </li>
                             </Link>
                         ))
                         }
                     </ul>
                 </div>
-                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl mt-6'>Languages:</h1>
+                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl mt-6'>Spoken Languages</h1>
                 <div className='w-full p-4 md:p-6'>
                     <ul className=' grid grid-cols-2 justify-items-center'>
                         { 
@@ -220,14 +229,14 @@ export default function MoviePage({ params }) {
                 </div>
             </div>
             
-            {/* MOVIE IMAGES SECTION*/}
-            <div className='mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
-                <h1>Movie Images Placeholder</h1>
-            </div>
+            
 
-            {/* MOVIE SIMILAR/ RECCOMENDED SECTION*/}
-            <div className='mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
-                <h1>Movie Recommend Placeholder</h1>
+            {/* RELATED MOVIES SECTION*/}
+            <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+                <div className='flex items-center justify-center my-4'>
+                        <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Related Movies</h1>
+                </div>
+                { related.results && <MovieCarousel props={related.results} />}
             </div>
             
         </div>
