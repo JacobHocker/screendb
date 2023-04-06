@@ -1,11 +1,9 @@
 
-import CreditsSlide from "./CreditsSlide";
-
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 
-export default function CreditsCarousel({ props }) {
+export default function ImageCarousel({ props }) {
 
     const responsive = {
         xxl: {
@@ -48,8 +46,6 @@ export default function CreditsCarousel({ props }) {
                 responsive={responsive}
                 
                 infinite={true}
-                
-                
                 keyBoardControl={true}
                 customTransition="all .5"
                 transitionDuration={500}

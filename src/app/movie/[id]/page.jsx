@@ -1,6 +1,7 @@
 "use client"
 import Image from 'next/image';
 import Link from 'next/link';
+import emptyCompany from "../../../assets/emptyCompany.png";
 import { FaImdb } from 'react-icons/fa';
 import {useState, useEffect } from 'react';
 import CreditsCarousel from '@/components/CreditsCarousel';
@@ -67,6 +68,7 @@ export default function MoviePage({ params }) {
                     quality='100'
                     className="rounded-lg "
                     style={{
+                        objectFit: "cover",
                         maxWidth: "100%",
                         height: "100%",
                     }}
@@ -139,12 +141,12 @@ export default function MoviePage({ params }) {
             {/* MOVIE PAGE GENRE SECTION */}
             <div className='p-4 w-full  mt-8 md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 flex flex-col  items-center md:mx-auto md:rounded-lg'>
                 <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Genres:</h1>
-                <div>
-                    <ul className=' grid grid-cols-2 gap-8 mt-4'>
+                <div className='w-full p-4 md:p-6'>
+                    <ul className='  grid grid-cols-2  justify-items-center '>
                         { 
                         movie.genres && movie.genres.map((genre) => (
                             <Link href={`/genre/${genre.id}`}>
-                                <li key={genre.id} className='text-lg lg:text-xl hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
+                                <li key={genre.id} className='text-xl lg:text-2xl hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
                                     {genre.name}
                                 </li>
                             </Link>
@@ -155,21 +157,48 @@ export default function MoviePage({ params }) {
             </div>
 
             {/* MOVIE COLLECTIONS SECTION */}
-            <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
-                    <h1>Movie Collection Placeholder</h1>
+            {
+            movie.belongs_to_collection === null ?
+            <></>
+            :
+            <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 flex flex-col items-center md:mx-auto md:rounded-lg'>
+                <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Collection:</h1>
+                { movie.belongs_to_collection && 
+                <Link href={`/collection/${movie.belongs_to_collection.id}`}>
+                    <Image
+                    src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${movie.belongs_to_collection.backdrop_path}`} 
+                    width={500}
+                    height={300}
+                    quality='100'
+                    className="rounded-lg mt-8"
+                    style={{
+                        maxWidth: "100%",
+                        height: "100%",
+                    }}
+                    placeholder="blur"
+                    blurDataURL="/spinner.svg"
+                    alt="Movie poster"></Image>
+                </Link>
+                }
             </div>
+            }
 
 
             {/* MOVIE PAGE PRODUCTION COMPANIES & LANGUAGES SECTION */}
             <div className='p-4 w-full  mt-8 md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 flex flex-col  items-center md:mx-auto md:rounded-lg'>
                 <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Produced By:</h1>
-                <div>
-                    <ul className=' grid grid-cols-2 gap-8 mt-4'>
+                <div className='w-full p-4 md:p-6'>
+                    <ul className=' grid grid-cols-2 justify-items-center'>
                         { 
                         movie.production_companies && movie.production_companies.map((comp) => (
                             <Link href={`/company/${comp.id}`}>
-                                <li key={comp.id} className='text-lg lg:text-xl flex flex-col items-center hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
-                                    <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${comp.logo_path}`} alt={comp.name} className='' />
+                                <li key={comp.id} className='text-xl lg:text-2xl flex flex-col items-center hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
+                                    {
+                                        comp.logo_path === null ? 
+                                        <Image src={emptyCompany} width={200} height={100} style={{ maxWidth: "100%", maxHeight:"100%"}} className='w-40 sm:w-48 md:w-52' ></Image>
+                                        :
+                                        <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${comp.logo_path}`} alt={comp.name} className='w-40 sm:w-48 md:w-52' />
+                                    }
                                     <h1>{comp.name}</h1>
                                 </li>
                             </Link>
@@ -178,11 +207,11 @@ export default function MoviePage({ params }) {
                     </ul>
                 </div>
                 <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl mt-6'>Languages:</h1>
-                <div>
-                    <ul className=' grid grid-cols-2 gap-8 mt-4'>
+                <div className='w-full p-4 md:p-6'>
+                    <ul className=' grid grid-cols-2 justify-items-center'>
                         { 
                         movie.spoken_languages && movie.spoken_languages.map((lang) => (
-                            <li key={lang.id} className='text-lg lg:text-xl '>
+                            <li key={lang.id} className='text-xl lg:text-2xl '>
                                 {lang.english_name}
                             </li>
                         ))
