@@ -1,6 +1,5 @@
 "use client"
 import { useEffect, useState } from 'react';
-import Navbar from '@/components/HomeNav';
 import { Inter } from 'next/font/google'
 import HomeCard from '@/components/HomeCard';
 
@@ -29,18 +28,39 @@ export default function Home() {
     
   }, [trendingTime])
   
+   // SELECT DROPDOWN OPTIONS
+    const trendingTimeList = [
+        {
+            id: 0,
+            title: "Day",
+            value: "day",
+        },
+        {
+            id: 1,
+            title: "Week",
+            value: "week",
+        },
+    ];
   
   return (
     <div className=''>
-      <Navbar 
-        titleOne={"DAY"} 
-        variable={trendingTime} 
-        paramOne={"trendingDay"} 
-        setterOne={setTrendingDay} 
-        titleTwo={"WEEK"} 
-        paramTwo={"trendingWeek"} 
-        setterTwo={setTrendingWeek} 
-      />
+      <div className="mt-16 p-2 flex w-full justify-start ">
+          <select 
+          className='font-bold bg-transparent text-md md:text-xl lg:text-2xl border-2 rounded-sm hover:border-amber-400 hover:cursor-pointer border-slate-600'
+          value={trendingTime}
+          onChange={(e) => setTrendingTime(e.target.value)}>
+              {trendingTimeList.map((time) => (
+                  <option 
+                      className=''
+                      key={time.id}
+                      value={time.value}
+                  >
+                      {time.title}
+                  </option>
+              ))}
+          </select> 
+      </div>
+      
       <div className='flex justify-center mt-6'>
         <h1 className='sm:text-3xl text-2xl'>Top Trending All Categories</h1>
       </div>
