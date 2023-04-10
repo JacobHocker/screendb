@@ -12,6 +12,7 @@ export default function MoviePage({ params }) {
     const [movie, setMovie] = useState({});
     const [credits, setCredits] = useState([]);
     const [related, setRelated] = useState({});
+    const [similar, setSimilar] = useState({});
     const movieId = params.id;
 
     // Fetching the movie information from the database
@@ -35,6 +36,14 @@ export default function MoviePage({ params }) {
         .then((data) => { setRelated(data)})
     }, [movieId])
 
+    // If there are no related movies, then use the similar movie list
+    useEffect(() => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}movie/${movieId}/similar?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
+        .then((r) => r.json())
+        .then((data) => { setSimilar(data)})
+    }, [movieId])
+
+    
     
     // Converting the raw minute number to hours and minutes
     const timeConvert = (num) => {
@@ -236,7 +245,12 @@ export default function MoviePage({ params }) {
                 <div className='flex items-center justify-center my-4'>
                         <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Related Movies</h1>
                 </div>
-                { related.results && <MovieCarousel props={related.results} />}
+                { related.results && 
+                related.results.length === 0 ?
+                <MovieCarousel props={similar.results} />
+                :
+                <MovieCarousel props={related.results} />
+                }
             </div>
             
         </div>
