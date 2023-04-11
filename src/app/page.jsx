@@ -1,7 +1,8 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google'
-import HomeCard from '@/components/HomeCard';
+import HomeCard from '@/components/MovieCard';
+import HomeCarousel from '@/components/HomeCarousel';
 
 export const dynamic = "force-dynamic";
 
@@ -11,6 +12,8 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const [trendingHome, setTrendingHome] = useState([]);
   const [trendingTime, setTrendingTime] = useState("day")
+  const [homePeople, setHomePeople] = useState("");
+  const [homeMovies, setHomeMovies] = useState([]);
 
   // Setting Home Page Trending Times
   const setTrendingDay = () => {
@@ -20,12 +23,18 @@ export default function Home() {
     setTrendingTime("week");
   };
 
+  // TRENDING HOME PAGE MOVIES
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}trending/all/${trendingTime}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}trending/movie/${trendingTime}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
     .then((r) => r.json())
-    .then((data) => {setTrendingHome(data)})
-    
-    
+    .then((data) => {setHomeMovies(data)})
+  }, [trendingTime])
+
+  // TRENDING HOME PAGE PEOPLE
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}trending/person/${trendingTime}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
+    .then((r) => r.json())
+    .then((data) => {setHomePeople(data)})
   }, [trendingTime])
   
    // SELECT DROPDOWN OPTIONS
@@ -64,13 +73,20 @@ export default function Home() {
       <div className='flex justify-center mt-6'>
         <h1 className='sm:text-3xl text-2xl'>Top Trending All Categories</h1>
       </div>
-      <div className='mt-8 grid grid-cols-1 2xsm:grid-cols-2 xsm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
+      {/* <div className='mt-8 grid grid-cols-1 2xsm:grid-cols-2 xsm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
         {trendingHome.results && trendingHome.results.map((all) => (
           <HomeCard
             key={all.id}
             props={all}
             />
         ))}
+      </div> */}
+
+      <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+          <div className='flex items-center justify-center my-4'>
+                  <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Movies</h1>
+          </div>
+          {homeMovies.results && <HomeCarousel props={homeMovies.results} />}
       </div>
     </div>
     

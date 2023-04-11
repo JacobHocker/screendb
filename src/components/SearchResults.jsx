@@ -1,5 +1,5 @@
 
-import HomeCard from "./HomeCard";
+import HomeCard from "./MovieCard";
 
 export default function SearchResults({ props }) {
     return (
