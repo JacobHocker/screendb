@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google'
 import HomeCard from '@/components/HomeCard';
 
-
+export const dynamic = "force-dynamic";
 
 
 const inter = Inter({ subsets: ['latin'] })

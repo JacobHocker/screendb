@@ -24,7 +24,7 @@ export default function Header() {
     const currentTheme = theme === "system" ? systemTheme : theme;
 
     return (
-        <div className='flex justify-between mx-2 max-w-6x1 sm:mx-auto items-center py-6'>
+        <div className='flex justify-between bg-amber-200 dark:bg-gray-600  max-w-6x1 sm:mx-auto items-center py-6'>
 
                 <div className='flex '>
                     <MenuItem title="MOVIES" address="/movies" Icon={MdLocalMovies} />

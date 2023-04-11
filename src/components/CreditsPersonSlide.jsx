@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 
 
-export default function CreditsSlide({ props }) {
+export default function CreditsPersonSlide({ props }) {
     return (
         
         <div className='px-2 h-full'>

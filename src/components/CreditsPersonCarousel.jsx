@@ -1,11 +1,11 @@
 
-import CreditsSlide from "./CreditsSlide";
+import CreditsSlide from "./CreditsPersonSlide";
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 
-export default function CreditsCarousel({ props }) {
+export default function CreditsPersonCarousel({ props }) {
 
     const responsive = {
         xxl: {

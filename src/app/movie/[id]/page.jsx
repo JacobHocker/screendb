@@ -4,7 +4,7 @@ import Link from 'next/link';
 import emptyCompany from "../../../assets/emptyCompany.png";
 import { FaImdb } from 'react-icons/fa';
 import {useState, useEffect } from 'react';
-import CreditsCarousel from '@/components/CreditsCarousel';
+import CreditsCarousel from '@/components/CreditsPersonCarousel';
 import MovieCarousel from '@/components/MovieCarousel';
 
 
