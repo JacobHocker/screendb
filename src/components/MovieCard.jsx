@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link';
 import { FiThumbsUp } from 'react-icons/fi';
-
+import Empty from '../assets/emptyMovie.png';
 export default function HomeCard({props}) {
 
     
@@ -10,7 +10,14 @@ export default function HomeCard({props}) {
             {
             props.id && 
             <Link href={props.release_date ? `/movie/${props.id}` : props.birthdate ? `/person/${props.id}` : `/tv/${props.id}`}>
-                <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${props.poster_path || props.backdrop_path}`} alt={props.title} className="w-full h-auto object-cover  object-top rounded-t-lg" />
+                {
+                    props.poster_path !== null ?
+                    <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${props.poster_path || props.backdrop_path}`} alt={props.title} className="w-full h-auto object-cover  object-top rounded-t-lg" />
+                    :
+                    <Image src={Empty}
+                            alt="empty" className="w-full h-full object-cover" />
+                }
+                
                 <div className="p-2">
                     <p className='line-clamp-2 text-slate-600 dark:text-slate-300 h-11'>{props.overview}</p>
                     <h2 className='truncate mt-1 text-lg font-bold text-slate-900 dark:text-slate-50'>{props.title || props.name}</h2>
