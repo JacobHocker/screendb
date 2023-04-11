@@ -1,6 +1,7 @@
 "use client"
 import Image from 'next/image';
 import Link from 'next/link';
+import emptyMovie from '../../../assets/emptyMovie.png';
 import emptyCompany from "../../../assets/emptyCompany.png";
 import { FaImdb } from 'react-icons/fa';
 import {useState, useEffect } from 'react';
@@ -80,19 +81,27 @@ export default function MoviePage({ params }) {
             movie.title && 
             <div className='mt-8 w-full'>
                 <div className='p-4 md:pt-8 flex flex-col md:grid grid-cols-2 items-center content-center max-w-6xl mx-auto md:space-x-6'>
-                    <Image src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${movie.backdrop_path || movie.poster_path}`} 
-                    width={500}
-                    height={300}
-                    quality='100'
-                    className="rounded-lg "
-                    style={{
-                        objectFit: "cover",
-                        maxWidth: "100%",
-                        height: "100%",
-                    }}
-                    placeholder="blur"
-                    blurDataURL="/spinner.svg"
-                    alt="Movie poster"></Image>
+                    {
+                        movie.backdrop_path === null && movie.poster_path === null ?
+                        <Image src={emptyMovie}
+                            alt="empty" className="w-full h-full object-cover" />
+                        :
+                        <Image src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${movie.backdrop_path || movie.poster_path}`} 
+                        width={500}
+                        height={300}
+                        quality='100'
+                        className="rounded-lg "
+                        style={{
+                            objectFit: "cover",
+                            maxWidth: "100%",
+                            height: "100%",
+                        }}
+                        placeholder="blur"
+                        blurDataURL="/spinner.svg"
+                        alt="Movie poster"></Image>
+                        
+                    }
+                    
                     
                     <div className="p-2">
                         <h2 className="text-lg  md:text-xl mb-3 font-bold">

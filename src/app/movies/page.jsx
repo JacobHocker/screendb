@@ -1,7 +1,7 @@
 "use client"
 import Pagination from '@/components/Pagination';
-import SearchBox from '@/components/SearchBox';
-import SearchResults from '@/components/SearchResults';
+import SearchBox from '@/components/SearchMovieBox';
+import SearchResults from '@/components/SearchMovieResults';
 import {useState, useEffect} from 'react';
 
 
@@ -36,11 +36,6 @@ export default function Movies() {
             id: 2,
             title: "Now Playing",
             value: "now_playing",
-        },
-        {
-            id: 3,
-            title: "Upcoming",
-            value: "upcoming",
         },
         
     ];
@@ -77,11 +72,7 @@ export default function Movies() {
                         ?
                         <h1 className="text-3xl  lg:text-4xl font-semibold">Popular Movies</h1>
                         :
-                        movieCategory === "now_playing"
-                        ?
                         <h1 className="text-3xl  lg:text-4xl font-semibold">Movies Now Playing</h1>
-                        :
-                        <h1 className="text-3xl  lg:text-4xl font-semibold">Upcoming Movies</h1>
                 }
             </div>
             <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />

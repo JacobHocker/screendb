@@ -1,7 +1,7 @@
 "use client"
 
-import SearchBox from "@/components/SearchBox";
-import SearchResults from "@/components/SearchResults";
+import SearchBox from "@/components/SearchMovieBox";
+import SearchResults from "@/components/SearchMovieResults";
 import { useEffect, useState } from "react";
 
 export default function SearchPage({ params }) {

@@ -9,7 +9,7 @@ export default function SearchBox() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!search) return;
-        router.push(`/search/${search}`);
+        router.push(`/movieSearch/${search}`);
         
     }
     return (
