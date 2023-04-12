@@ -1,6 +1,6 @@
 "use client";
 import { useTheme } from 'next-themes';
-import MenuItem from './MenuItem';
+import HeaderItem from './HeaderItem';
 import { AiFillInfoCircle } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
 import { BsFillFilePersonFill } from 'react-icons/bs'
@@ -27,10 +27,10 @@ export default function Header() {
         <div className='flex justify-between bg-amber-200 dark:bg-gray-600  max-w-6x1 sm:mx-auto items-center py-6'>
 
                 <div className='flex '>
-                    <MenuItem title="MOVIES" address="/movies" Icon={MdLocalMovies} />
-                    {/* <MenuItem title="TV" address="/tv" Icon={CgScreen} />
-                    <MenuItem title="PEOPLE" address="/people" Icon={BsFillFilePersonFill} /> */}
-                    <MenuItem title="ABOUT" address="/about" Icon={AiFillInfoCircle} />
+                    <HeaderItem title="MOVIES" address="/movies" Icon={MdLocalMovies} />
+                    {/* <HeaderItem title="TV" address="/tv" Icon={CgScreen} />
+                    <HeaderItem title="PEOPLE" address="/people" Icon={BsFillFilePersonFill} /> */}
+                    <HeaderItem title="ABOUT" address="/about" Icon={AiFillInfoCircle} />
                 </div>
 
                 <div className="flex items-center space-x-5">

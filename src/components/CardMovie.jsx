@@ -5,7 +5,7 @@ import { FiThumbsUp } from 'react-icons/fi';
 import Empty from '../assets/emptyMovie.png';
 
 
-export default function MovieCard({props}) {
+export default function CardMovie({props}) {
 
     
     return (

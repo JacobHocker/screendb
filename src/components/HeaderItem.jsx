@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default function MenuItem({ title, address, Icon}) {
+export default function HeaderItem({ title, address, Icon}) {
     return (
         <div>
             <Link href={address} className="mx-4 lg:mx-6 hover:text-amber-500">

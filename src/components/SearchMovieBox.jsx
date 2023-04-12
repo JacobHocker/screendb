@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-export default function SearchBox() {
+
+export default function SearchMovieBox() {
     const [search, setSearch] = useState("");
 
     const router = useRouter();
