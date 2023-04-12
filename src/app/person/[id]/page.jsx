@@ -1,9 +1,10 @@
 "use client"
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { AiOutlineDown,  AiOutlineUp } from 'react-icons/ai';
-import MovieCarousel from '@/components/MovieCarousel';
+import Link from 'next/link';
+import {  AiOutlineUp } from 'react-icons/ai';
 import CreditMovieCarousel from '@/components/CreditMovieCarousel';
+import { FaImdb } from 'react-icons/fa';
 
 export default function PersonPage({ params }) {
     const [person, setPerson] = useState({});
@@ -49,7 +50,7 @@ export default function PersonPage({ params }) {
     };
 
 
-    console.log(movieCredits)
+    console.log(person)
 
     
     
@@ -58,8 +59,8 @@ export default function PersonPage({ params }) {
             {
                 person.name && 
                 <div className='flex flex-col w-full'>
+                    {/* PERSON PAGE HEADER */}
                     <div className='mt-8 w-full'>
-                        {/* PERSON PAGE HEADER */}
                         <div className='p-4 md:pt-8 flex flex-col md:grid grid-cols-2 items-center content-center max-w-4xl mx-auto md:space-x-4'>
                             <Image src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${person.profile_path}`} 
                             width={500}
@@ -112,13 +113,37 @@ export default function PersonPage({ params }) {
                             </div>
                         </div>
                     </div> 
+
+                    {/* PERSON EXTERNAL ID'S SOCIAL LINKS */}
+                    <div className='p-4 w-full  md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 grid grid-cols-2  justify-items-center md:mx-auto md:rounded-lg'>
+                        
+                        <p className='mb-3 md:text-lg flex items-center content-center'>
+                            {/* <span className='font-semibold mr-2'>Offi Page:</span> */}
+                            <Link href={`https://imdb.com/name/${person.imdb_id}/`} target="_blank">
+                                <FaImdb  className='text-2xl md:text-4xl hover:text-amber-500'/>
+                            </Link>
+                        </p>
+                    </div>
+                    {/* PERSON MOVIE CREDITS CAST & CREW */}
                     <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
                         <div className='flex items-center justify-center my-4'>
                             <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Movies Known For:</h1>
                         </div>
-                        <CreditMovieCarousel props={movieCredits.cast} className='pb-8'/>
-                        <CreditMovieCarousel props={movieCredits.crew} />
+                        <div className='pb-8 '>
+                            <div className='flex items-center justify-center my-4'>
+                                <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Cast</h1>
+                            </div>
+                            <CreditMovieCarousel props={movieCredits.cast} />
+                        </div>
+                        <div>
+                            <div className='flex items-center justify-center my-4'>
+                                <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Crew</h1>
+                            </div>
+                            <CreditMovieCarousel props={movieCredits.crew} />
+                        </div>
                     </div>
+
+                    
                 </div>
 
                 

@@ -76,9 +76,10 @@ export default function MoviePage({ params }) {
     }
 
     return (
-        <div className='w-full pb-24'>
+        <div className='w-full pb-16'>
+            {/* MOVIE PAGE HEADER */}
             {
-            movie.title && 
+            movie.title &&
             <div className='mt-8 w-full'>
                 <div className='p-4 md:pt-8 flex flex-col md:grid grid-cols-2 items-center content-center max-w-6xl mx-auto md:space-x-6'>
                     {

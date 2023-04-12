@@ -44,7 +44,7 @@ export default function Movies() {
 
 
     return (
-        <div>
+        <div className='pb-8'>
             <SearchBox />
             <div className="mt-16 p-2 flex w-full justify-start ">
                 <select 
