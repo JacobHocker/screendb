@@ -15,14 +15,13 @@ export default function MovieSlide({ props }) {
                         props.poster_path !== null ?
                     
                         <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${props.poster_path || props.backdrop_path}`}
-                            alt={props.name} className="object-cover object-center w-full" />
+                            alt={props.title} className="object-cover object-center w-full" />
                             :
                         <Image src={Empty}
-                            alt="empty" className="w-full h-full object-cover" />
+                            alt="Empty.." className="w-full h-full object-cover" />
                     }
                     <div className="bg-gray-800 flex   bg-opacity-50 absolute w-full bottom-0">
                         <div className="flex flex-col w-full h-3/6 items-center px-2 text-center">
-                            {/* <h3 className="line-clamp-1 text-xsm/4 lg:text-lg font-semibold leading-5 lg:leading-6 text-white">{props.character || props.job}</h3> */}
                             <h2 className="truncate-ellipsis lg:text-lg text-sm leading-4 lg:leading-5 text-white">{props.title}</h2>
                         </div>
                     </div>

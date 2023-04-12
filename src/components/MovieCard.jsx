@@ -3,7 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FiThumbsUp } from 'react-icons/fi';
 import Empty from '../assets/emptyMovie.png';
-export default function HomeCard({props}) {
+
+
+export default function MovieCard({props}) {
 
     
     return (

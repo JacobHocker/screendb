@@ -9,7 +9,7 @@ export default function CreditMovieSlide({ props }) {
     return (
         
         <div className='px-2 h-full'>
-            <Link href={`/person/${props.id}`}>
+            <Link href={`/movie/${props.id}`}>
                 <div className="flex flex-shrink-0 relative w-full h-full hover:cursor-pointer hover:shadow-sm dark:hover:shadow-slate-500 hover:shadow-amber-600 transition-shadow duration-200 hover:border-2 border-amber-600 dark:border-amber-500">
                     {
                         props.poster_path !== null ?

@@ -2,7 +2,7 @@
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import MovieSlide from './MovieSlide';
+import HomeSlide from './HomeSlide';
 
 
 
@@ -51,7 +51,7 @@ export default function HomeCarousel({ props }) {
                 itemClass="carousel-item-margin-left-40px-margin-right-40px"
                 >
                 {props && props.map((prop) => (
-                    <MovieSlide 
+                    <HomeSlide 
                         key={prop.id}
                         props={prop}
                         />
