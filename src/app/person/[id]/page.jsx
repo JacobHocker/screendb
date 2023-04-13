@@ -137,7 +137,7 @@ export default function PersonPage({ params }) {
                     </div> 
 
                     {/* PERSON EXTERNAL ID'S SOCIAL LINKS */}
-                    <div className='p-4 w-full  md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 grid grid-cols-2  justify-items-center md:mx-auto md:rounded-lg'>
+                    <div className='p-4 w-full mt-8 md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 grid grid-cols-2  justify-items-center md:mx-auto md:rounded-lg'>
                         
                         <p className='mb-3 md:text-lg flex items-center content-center'>
                             {/* <span className='font-semibold mr-2'>Offi Page:</span> */}

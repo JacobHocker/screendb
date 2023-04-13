@@ -18,7 +18,7 @@ export default function CardMovie({props}) {
                     <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${props.poster_path || props.backdrop_path}`} alt={props.title} className="w-full h-auto object-cover  object-top rounded-t-lg" />
                     :
                     <Image src={Empty}
-                            alt="empty" className="w-auto h-full object-cover" />
+                            alt="empty" className="w-full  object-cover" />
                 }
                 
                 <div className="p-2">
