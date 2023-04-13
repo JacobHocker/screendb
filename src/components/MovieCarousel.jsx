@@ -42,6 +42,7 @@ export default function MovieCarousel({ props }) {
         <div className="px-4">
             { props && 
             <Carousel
+                className='py-4'
                 swipeable={true}
                 draggable={true}
                 showDots={false}

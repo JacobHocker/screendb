@@ -39,7 +39,7 @@ export default function People() {
             <SearchPeopleBox />
             <div className="mt-16 p-2 flex w-full justify-start ">
                 <select 
-                className='font-bold bg-transparent text-md md:text-xl lg:text-2xl border-2 rounded-sm hover:border-amber-400 hover:cursor-pointer border-slate-600'
+                className='font-bold p-2 bg-transparent text-md md:text-xl lg:text-2xl border-2 rounded-sm hover:border-amber-400 hover:cursor-pointer border-slate-600'
                 value={peopleCategory}
                 onChange={(e) => setPeopleCategory(e.target.value)}>
                     {peopleCategoryList.map((cat) => (
