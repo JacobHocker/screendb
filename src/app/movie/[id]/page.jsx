@@ -173,8 +173,8 @@ export default function MoviePage({ params }) {
                     <ul className='  grid grid-cols-2  justify-items-center '>
                         { 
                         movie.genres && movie.genres.map((genre) => (
-                            <Link href={`/genre/${genre.id}`}>
-                                <li key={genre.id} className='text-xl lg:text-2xl hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
+                            <Link key={genre.id} href={`/genre/${genre.id}`}>
+                                <li  className='text-xl lg:text-2xl hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
                                     {genre.name}
                                 </li>
                             </Link>
@@ -219,11 +219,11 @@ export default function MoviePage({ params }) {
                     <ul className=' grid grid-cols-2 justify-items-center'>
                         { 
                         movie.production_companies && movie.production_companies.map((comp) => (
-                            <Link href={`/company/${comp.id}`}>
-                                <li key={comp.id} className='text-xl lg:text-2xl flex flex-col justify-center items-center hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
+                            <Link key={comp.id} href={`/company/${comp.id}`}>
+                                <li  className='text-xl lg:text-2xl flex flex-col justify-center items-center hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
                                     {
                                         comp.logo_path === null ? 
-                                        <Image src={emptyCompany} width={200} height={100} style={{ maxWidth: "100%", maxHeight:"25%"}} className='w-40 sm:w-48 md:w-52' ></Image>
+                                        <Image src={emptyCompany} alt="Empty" width={200} height={100} style={{ maxWidth: "100%", maxHeight:"25%"}} className='w-40 sm:w-48 md:w-52' ></Image>
                                         :
                                         <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${comp.logo_path}`} alt={comp.name} className='w-40 sm:w-48 md:w-52 ' />
                                     }
