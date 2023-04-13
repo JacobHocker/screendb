@@ -9,7 +9,7 @@ export default function CardMovie({props}) {
 
     
     return (
-        <div className=" cursor-pointer flex flex-col justify-center bg-transparent hover:shadow-amber-600 dark:hover:shadow-slate-400 shadow-md rounded-lg border-2 border-slate-400 hover:border-amber-300 dark:hover:border-amber-500  m-2 transition-shadow duration-200"> 
+        <div className=" cursor-pointer flex flex-col  bg-transparent hover:shadow-amber-600 dark:hover:shadow-slate-400 shadow-md rounded-lg border-2 border-slate-400 hover:border-amber-300 dark:hover:border-amber-500  m-2 transition-shadow duration-200"> 
             {
             props.id && 
             <Link href={`/movie/${props.id}`}>

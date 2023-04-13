@@ -36,6 +36,18 @@ export default function PersonPage({ params }) {
         .then((data) => { setTvCredits(data)})
     }, [personId]);
 
+    // Sets order of the movies listed by most to least popular based on vote count
+    movieCredits.cast && movieCredits.cast.sort( function(a,b) {
+        return b.vote_count - a.vote_count
+    });
+    movieCredits.crew && movieCredits.crew.sort( function(a,b) {
+        return b.vote_count - a.vote_count
+    });
+    //Sets order of television shows listed by most to least popular based on vote count
+    tvCredits.cast && tvCredits.cast.sort( function(a,b) {
+        return b.vote_count - a.vote_count
+    });
+
     // Calculate age if person is still alive
     const getAliveAge = (dateString) => {
         let today = new Date();

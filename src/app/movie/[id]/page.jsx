@@ -29,20 +29,28 @@ export default function MoviePage({ params }) {
         .then((r) => r.json())
         .then((data) => { setCredits(data)})
     }, [movieId])
-
-    // Fetching the related movies from the database
+    credits.crew && credits.crew.sort(function (a,b) {
+        return b.popularity - a.popularity
+    });
+    // Fetching the related movies from the database sorting related movies by most popular
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}movie/${movieId}/recommendations?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
         .then((r) => r.json())
         .then((data) => { setRelated(data)})
     }, [movieId])
+    related.results && related.results.sort(function (a,b) {
+        return b.vote_count - a.vote_count
+    });
 
-    // If there are no related movies, then use the similar movie list
+    // If there are no related movies, then use the similar movie list sorting similar movies by most popular
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}movie/${movieId}/similar?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
         .then((r) => r.json())
         .then((data) => { setSimilar(data)})
     }, [movieId])
+    similar.results && similar.results.sort(function (a,b) {
+        return b.vote_count - a.vote_count
+    });
 
     
     
