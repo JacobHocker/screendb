@@ -12,7 +12,7 @@ export default function CardMovie({props}) {
         <div className=" cursor-pointer flex flex-col justify-center bg-transparent hover:shadow-amber-600 dark:hover:shadow-slate-400 shadow-md rounded-lg border-2 border-slate-400 hover:border-amber-300 dark:hover:border-amber-500  m-2 transition-shadow duration-200"> 
             {
             props.id && 
-            <Link href={props.release_date ? `/movie/${props.id}` : props.birthdate ? `/person/${props.id}` : `/tv/${props.id}`}>
+            <Link href={`/movie/${props.id}`}>
                 {
                     props.poster_path !== null ?
                     <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${props.poster_path || props.backdrop_path}`} alt={props.title} className="w-full h-auto object-cover  object-top rounded-t-lg" />

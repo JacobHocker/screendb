@@ -1,7 +1,7 @@
 "use client"
 import Pagination from '@/components/Pagination';
-import SearchBox from '@/components/SearchMovieBox';
-import SearchResults from '@/components/SearchMovieResults';
+import SearchMovieBox from '@/components/SearchMovieBox';
+import SearchMovieResults from '@/components/SearchMovieResults';
 import {useState, useEffect} from 'react';
 
 
@@ -18,7 +18,7 @@ export default function Movies() {
         .then((res) => res.json()
         )
         .then((data) => {setMovies(data)})
-    }, [movieCategory, pageNumber])
+    }, [movieCategory, pageNumber]);
 
     // SELECT DROPDOWN OPTIONS
     const movieCategoryList = [
@@ -45,7 +45,7 @@ export default function Movies() {
 
     return (
         <div className='pb-8'>
-            <SearchBox />
+            <SearchMovieBox />
             <div className="mt-16 p-2 flex w-full justify-start ">
                 <select 
                 className='font-bold bg-transparent text-md md:text-xl lg:text-2xl border-2 rounded-sm hover:border-amber-400 hover:cursor-pointer border-slate-600'
@@ -77,7 +77,7 @@ export default function Movies() {
             </div>
             <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
 
-            {movies.results && <SearchResults props={movies.results} />}
+            {movies.results && <SearchMovieResults props={movies.results} />}
         </div>
     )
 }
