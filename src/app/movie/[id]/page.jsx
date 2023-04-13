@@ -5,7 +5,7 @@ import emptyMovie from '../../../assets/emptyMovie.png';
 import emptyCompany from "../../../assets/emptyCompany.png";
 import { FaImdb } from 'react-icons/fa';
 import {useState, useEffect } from 'react';
-import CreditsCarousel from '@/components/CreditsPersonCarousel';
+import CreditPersonCarousel from '@/components/CreditPersonCarousel';
 import MovieCarousel from '@/components/MovieCarousel';
 
 
@@ -51,10 +51,10 @@ export default function MoviePage({ params }) {
         const hours = Math.floor(num / 60);
         const minutes = num % 60;
         return `${hours}h:${minutes}m`;
-    }
+    };
 
     // Taking the Rating From API and turnin it into a percentage
-    const movieRating = Math.round(movie.vote_average * 10)
+    const movieRating = Math.round(movie.vote_average * 10);
     
     
     // Taking the long form dollar amount and abbreviating it
@@ -73,7 +73,7 @@ export default function MoviePage({ params }) {
             newValue = shortValue+suffixes[suffixNum];
         }
         return newValue;
-    }
+    };
 
     return (
         <div className='w-full pb-16'>
@@ -151,7 +151,7 @@ export default function MoviePage({ params }) {
                     <div className='flex items-center justify-center my-4'>
                         <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Cast</h1>
                     </div>
-                    <CreditsCarousel props={credits.cast} />
+                    <CreditPersonCarousel props={credits.cast} />
                 </div>
 
                 
@@ -161,7 +161,7 @@ export default function MoviePage({ params }) {
                     <div className='flex items-center justify-center my-4'>
                         <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Crew</h1>
                     </div>
-                    <CreditsCarousel props={credits.crew} />
+                    <CreditPersonCarousel props={credits.crew} />
                 </div>
             </div>
             }

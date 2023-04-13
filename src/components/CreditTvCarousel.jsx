@@ -1,11 +1,10 @@
-
-import CreditsSlide from "./CreditsPersonSlide";
+import CreditTvSlide from './CreditTvSlide';
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 
-export default function CreditsPersonCarousel({ props }) {
+export default function CreditTvCarousel({ props }) {
 
     const responsive = {
         xxl: {
@@ -42,7 +41,7 @@ export default function CreditsPersonCarousel({ props }) {
         <div className="px-4">
             { props && 
             <Carousel
-                className="py-4"
+                className='py-4'
                 swipeable={true}
                 draggable={true}
                 showDots={false}
@@ -59,7 +58,7 @@ export default function CreditsPersonCarousel({ props }) {
                 itemClass="carousel-item-margin-left-40px-margin-right-40px"
                 >
                 {props && props.map((prop) => (
-                    <CreditsSlide 
+                    <CreditTvSlide 
                         key={prop.id}
                         props={prop}
                         />

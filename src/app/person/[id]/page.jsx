@@ -4,11 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {  AiOutlineUp } from 'react-icons/ai';
 import CreditMovieCarousel from '@/components/CreditMovieCarousel';
+import CreditTvCarousel from '@/components/CreditTvCarousel';
 import { FaImdb } from 'react-icons/fa';
 
 export default function PersonPage({ params }) {
     const [person, setPerson] = useState({});
     const [movieCredits, setMovieCredits] = useState({});
+    const [tvCredits, setTvCredits] = useState({});
     const [extendBio, setExtendBio] = useState(false);
     
     const personId = params.id;
@@ -19,11 +21,19 @@ export default function PersonPage({ params }) {
         .then((r) => r.json())
         .then((data) => { setPerson(data)})
     }, [personId]);
+
     // Fetching the person movie credits from database
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}person/${personId}/movie_credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
         .then((r) => r.json())
         .then((data) => { setMovieCredits(data)})
+    }, [personId]);
+
+    // Fetching the person television credits from database
+    useEffect(() => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}person/${personId}/tv_credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
+        .then((r) => r.json())
+        .then((data) => { setTvCredits(data)})
     }, [personId]);
 
     // Calculate age if person is still alive
@@ -143,7 +153,15 @@ export default function PersonPage({ params }) {
                         </div>
                     </div>
 
-                    
+                    {/* PERSON TELEVISION CREDITS CAST */}
+                    <div className=' mt-16 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+                        <div className='flex items-center justify-center my-4'>
+                            <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Television Known For:</h1>
+                        </div>
+                        <div className='pb-8 '>
+                            <CreditTvCarousel props={tvCredits.cast} />
+                        </div>
+                    </div>
                 </div>
 
                 
