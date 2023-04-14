@@ -28,7 +28,7 @@ export default function Header() {
 
                 <div className='flex '>
                     <HeaderItem title="MOVIES" address="/movies" Icon={MdLocalMovies} />
-                    {/* <HeaderItem title="TV" address="/tv" Icon={CgScreen} /> */}
+                    <HeaderItem title="TV" address="/tvShows" Icon={CgScreen} />
                     <HeaderItem title="PEOPLE" address="/people" Icon={BsFillFilePersonFill} />
                     <HeaderItem title="ABOUT" address="/about" Icon={AiFillInfoCircle} />
                 </div>

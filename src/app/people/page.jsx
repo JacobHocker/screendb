@@ -11,7 +11,7 @@ export default function People() {
     
 
 
-    // FETCHING WHAT IS DISPLAYED ON THE MOVIE PAGE
+    // FETCHING WHAT IS DISPLAYED ON THE PEOPLE PAGE
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}person/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=${pageNumber}`)
         .then((res) => res.json()
