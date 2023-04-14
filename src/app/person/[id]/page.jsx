@@ -2,15 +2,19 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {  AiOutlineUp } from 'react-icons/ai';
+import {  AiOutlineUp, AiFillFacebook, AiFillTwitterSquare, AiFillInstagram } from 'react-icons/ai';
+import { SiTiktok, SiWikidata } from 'react-icons/si';
 import CreditMovieCarousel from '@/components/CreditMovieCarousel';
 import CreditTvCarousel from '@/components/CreditTvCarousel';
 import { FaImdb } from 'react-icons/fa';
+import ImagePersonCarousel from '@/components/ImagePersonCarousel';
 
 export default function PersonPage({ params }) {
     const [person, setPerson] = useState({});
     const [movieCredits, setMovieCredits] = useState({});
     const [tvCredits, setTvCredits] = useState({});
+    const [personImages, setPersonImages] = useState({});
+    const [externalId, setExternalId] = useState({});
     const [extendBio, setExtendBio] = useState(false);
     
     const personId = params.id;
@@ -36,12 +40,26 @@ export default function PersonPage({ params }) {
         .then((data) => { setTvCredits(data)})
     }, [personId]);
 
+    // Fetching the person external I.D's social medias
+    useEffect(() => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}person/${personId}/external_ids?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
+        .then((r) => r.json())
+        .then((data) => { setExternalId(data)})
+    }, [personId]);
+
+    // Fetching the person external I.D's social medias
+    useEffect(() => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}person/${personId}/images?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
+        .then((r) => r.json())
+        .then((data) => { setPersonImages(data)})
+    }, [personId]);
+
     // Sets order of the movies listed by most to least popular based on vote count
     movieCredits.cast && movieCredits.cast.sort( function(a,b) {
-        return b.vote_count - a.vote_count
+        return b.popularity - a.popularity
     });
     movieCredits.crew && movieCredits.crew.sort( function(a,b) {
-        return b.vote_count - a.vote_count
+        return b.popularity - a.popularity
     });
     //Sets order of television shows listed by most to least popular based on vote count
     tvCredits.cast && tvCredits.cast.sort( function(a,b) {
@@ -72,12 +90,12 @@ export default function PersonPage({ params }) {
     };
 
 
-    console.log(person)
+    
 
     
     
     return (
-        <div className='pb-10'>
+        <div className='pb-16'>
             {
                 person.name && 
                 <div className='flex flex-col w-full'>
@@ -137,15 +155,50 @@ export default function PersonPage({ params }) {
                     </div> 
 
                     {/* PERSON EXTERNAL ID'S SOCIAL LINKS */}
-                    <div className='p-4 w-full mt-8 md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 grid grid-cols-2  justify-items-center md:mx-auto md:rounded-lg'>
-                        
-                        <p className='mb-3 md:text-lg flex items-center content-center'>
-                            {/* <span className='font-semibold mr-2'>Offi Page:</span> */}
-                            <Link href={`https://imdb.com/name/${person.imdb_id}/`} target="_blank">
-                                <FaImdb  className='text-2xl md:text-4xl hover:text-amber-500'/>
+                    <div className='p-4 w-full mt-8 md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16  md:p-6 grid grid-cols-3 gap-3 justify-items-center md:mx-auto md:rounded-lg '>
+                        {
+                            externalId.imdb_id === null || externalId.imdb_id === "" ?
+                            <></>
+                            :
+                            <Link href={`https://imdb.com/name/${externalId.imdb_id}/`} target="_blank">
+                                <FaImdb  className='text-4xl md:text-5xl hover:text-amber-500'/>
                             </Link>
-                        </p>
+                        }
+                        {
+                            externalId.twitter_id === null || externalId.twitter_id === "" ? 
+                            <></>
+                            :
+                            <Link href={`https://twitter.com/${externalId.twitter_id}/`} target="_blank">
+                                <AiFillTwitterSquare  className='text-4xl md:text-5xl hover:text-amber-500'/>
+                            </Link>
+                        }
+                        {
+                            externalId.instagram_id === null || externalId.instagram_id === "" ? 
+                            <></>
+                            :
+                            <Link href={`https://instagram.com/${externalId.instagram_id}/`} target="_blank">
+                                <AiFillInstagram  className='text-4xl md:text-5xl hover:text-amber-500'/>
+                            </Link>
+                        }
+                        {
+                            externalId.tiktok_id === null || externalId.tiktok_id === "" ? 
+                            <></>
+                            :
+                            <Link href={`https://tiktok.com/@${externalId.tiktok_id}/`} target="_blank">
+                                <SiTiktok  className='text-4xl md:text-5xl hover:text-amber-500'/>
+                            </Link>
+                        }
+                        {
+                            externalId.wikidata_id === null || externalId.wikidata_id === "" ? 
+                            <></>
+                            :
+                            <Link href={`https://wikidata.org/wiki/${externalId.wikidata_id}`} target="_blank">
+                                <SiWikidata  className='text-4xl md:text-5xl hover:text-amber-500'/>
+                            </Link>
+                        }
+                        
                     </div>
+
                     {/* PERSON MOVIE CREDITS CAST & CREW */}
                     <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
                         <div className='flex items-center justify-center my-4'>
@@ -166,7 +219,7 @@ export default function PersonPage({ params }) {
                     </div>
 
                     {/* PERSON TELEVISION CREDITS CAST */}
-                    <div className=' mt-16 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+                    <div className=' mt-16 pt-4 pb-4 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
                         <div className='flex items-center justify-center my-4'>
                             <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Television Known For:</h1>
                         </div>
@@ -174,11 +227,12 @@ export default function PersonPage({ params }) {
                             <CreditTvCarousel props={tvCredits.cast} />
                         </div>
                     </div>
+
+                    { /* PERSON IMAGE CAROUSEL AREA */}
+                    <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+                        {personImages.profiles && <ImagePersonCarousel props={personImages.profiles} />}
+                    </div>
                 </div>
-
-                
-
-
 
             }
             

@@ -14,12 +14,14 @@ export default function PeopleSearchPage({ params }) {
         .then((r) => r.json())
         .then((data) => {setSearchResults(data)})
     }, [params.searchTerm, pageNumber])
+
+    
     
     searchResults.results && searchResults.results.sort(function (a,b) {
         return b.popularity - a.popularity
     })
     
-
+    
 
     return (
         <div className="pb-16">
