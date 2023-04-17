@@ -1,9 +1,9 @@
 "use client"
 
-import SearchMovieBox from "@/components/SearchMovieBox";
-import SearchMovieResults from "@/components/SearchMovieResults";
 import Pagination from "@/components/Pagination";
 import { useEffect, useState } from "react";
+import SearchTvResults from "@/components/SearchTvResults";
+import SearchTvBox from "@/components/SearchTvBox";
 
 export default function TvSearchPage({ params }) {
     const [searchResults, setSearchResults] = useState([]);
@@ -19,12 +19,12 @@ export default function TvSearchPage({ params }) {
     })
     return (
         <div className="pb-16">
-        <SearchMovieBox />
+        <SearchTvBox />
         {searchResults.results && searchResults.results.length === 0 && (
             <h1 className="text-center pt-6">No results found</h1>
         )}
         <Pagination setPageNumber={setPageNumber} pageNumber={pageNumber} />
-        {searchResults.results && <SearchMovieResults props={searchResults.results} />}
+        {searchResults.results && <SearchTvResults props={searchResults.results} />}
         <Pagination setPageNumber={setPageNumber} pageNumber={pageNumber} />
         </div>
     );

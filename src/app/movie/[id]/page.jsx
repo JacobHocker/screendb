@@ -164,7 +164,7 @@ export default function MoviePage({ params }) {
 
                 
 
-                {/* MOVIE CREW CAROUSEL */}
+                {/* CREW CAROUSEL */}
                 <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
                     <div className='flex items-center justify-center my-4'>
                         <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Crew</h1>
