@@ -6,14 +6,14 @@ export default function SeasonsPage({ params }) {
     const [tvShow, setTvShow] = useState({});
     const tvId = params.id
 
-    // Fetching the television show basic information from the database
+    // Fetching the tv seasons information from the database
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}tv/${tvId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
         .then((r) => r.json())
         .then((data) => { setTvShow(data)})
     }, [tvId]);
 
-    console.log(tvShow)
+    
     
 
     
@@ -22,7 +22,6 @@ export default function SeasonsPage({ params }) {
             {
                 tvShow.id && 
                 <div className='flex flex-col items-center'>
-
                     {/* SEASONS PAGE HEADER */}
                     <div className='mt-16'>
                         <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold'>{tvShow.name} Seasons </h1>
