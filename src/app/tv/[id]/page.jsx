@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import EmptyTv from '../../../assets/emptyTv.webp';
 import Image from "next/image";
 import emptyCompany from '../../../assets/emptyCompany.png';
+import emptyPerson from '../../../assets/emptyPersonTwo.jpeg';
 import TvCarousel from "@/components/TvCarousel";
 import Link from "next/link";
 
@@ -112,6 +113,44 @@ export default function TvPage({ params }) {
                     </p>
                 </div>
 
+                {/* TV SHOW PRODUCTION COMPANIES & LANGUAGES SECTION */}
+                <div className='p-4 w-full  mt-8 md:w-9/12 bg-slate-300 dark:bg-gray-600 md:mt-16 md:p-6 flex flex-col  items-center md:mx-auto md:rounded-lg'>
+                    <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Created By</h1>
+                    <div className='w-full p-4 md:p-6'>
+                        <ul className=' grid grid-cols-2 justify-items-center'>
+                            { 
+                            tvShow.created_by && tvShow.created_by.map((c) => (
+                                <Link key={c.id} href={`/person/${c.id}`}>
+                                    <li  className='text-xl lg:text-2xl flex flex-col justify-center items-center hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
+                                        {
+                                            c.profile_path === null ? 
+                                            <Image src={emptyPerson} alt="Empty" width={200} height={100} style={{ maxWidth: "100%", maxHeight:"25%"}} className='w-40 sm:w-48 md:w-52' ></Image>
+                                            :
+                                            <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${c.profile_path}`} alt={c.name} className='w-40 rounded-md sm:w-44 md:w-52 ' />
+                                        }
+                                        <h1 className='p-2 text-lg md:text-2xl'>{c.name}</h1>
+                                    </li>
+                                </Link>
+                            ))
+                            }
+                        </ul>
+                    </div>
+                    <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl mt-6'>Production Countries</h1>
+                    <div className='w-full p-4 md:p-6'>
+                        <ul className=' grid grid-cols-2 justify-items-center'>
+                            { 
+                            tvShow.production_countries && tvShow.production_countries.map((prod) => (
+                                <li key={prod.id} className='text-xl lg:text-2xl '>
+                                    {prod.name}
+                                </li>
+                            ))
+                            }
+                        </ul>
+                    </div>
+                </div>
+                
+
+                {/* TV SHOW SEASON LINK */}
                 <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 flex flex-col items-center md:mx-auto md:rounded-lg'>
                     <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>{tvShow.name} Seasons </h1>
                     { tvShow.seasons && 
