@@ -16,9 +16,9 @@ export default function CardEpisode({ props, tvId, seasonNum }) {
                     }
                     <div className='flex flex-col p-2  justify-evenly items-center'>
                         <h1 className='font-bold text-md sm:text-lg md:text-2xl'>{props.name}</h1>
-                        <p className="text-sm sm:text-md md:text-lg lg:text-xl mb-3 mt-4">
+                        <p className="text-sm sm:text-md md:text-lg lg:text-xl mb-3 mt-4 flex flex-col items-center">
                             <span className="font-semibold mr-1">Run Time:</span>
-                            {props.runtime} minutes
+                            {props.runtime} Min
                         </p>
                         <p className="text-sm sm:text-md md:text-lg lg:text-xl mb-3 flex flex-col items-center mt-4">
                             <span className="font-semibold mr-1">Air Date:</span>

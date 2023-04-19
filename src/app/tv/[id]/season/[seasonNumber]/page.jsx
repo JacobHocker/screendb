@@ -1,14 +1,13 @@
 "use client"
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import emptyTv from '../../../../../assets/emptyTv.webp';
 import CardEpisode from '@/components/CardEpisode';
 
 
 export default function SeasonPage({ params }) {
     const [season, setSeason] = useState({});
-    const [videos, setVideos] = useState({});
+    
     const tvId = params.id;
     const seasonNum = params.seasonNumber;
 
@@ -22,8 +21,7 @@ export default function SeasonPage({ params }) {
     
 
 
-    console.log(season)
-    console.log(videos)
+    
 
     return (
         <div className="pb-16">
