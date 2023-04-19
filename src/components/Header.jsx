@@ -5,6 +5,7 @@ import { AiFillInfoCircle } from 'react-icons/ai';
 import { MdLocalMovies } from 'react-icons/md';
 import { BsFillFilePersonFill } from 'react-icons/bs'
 import { CgScreen } from 'react-icons/cg';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import LogoLt from '../assets/EntSpotLT.png';
@@ -30,6 +31,7 @@ export default function Header() {
                     <HeaderItem title="MOVIES" address="/movies" Icon={MdLocalMovies} />
                     <HeaderItem title="TV" address="/tvShows" Icon={CgScreen} />
                     <HeaderItem title="PEOPLE" address="/people" Icon={BsFillFilePersonFill} />
+                    
                     <HeaderItem title="ABOUT" address="/about" Icon={AiFillInfoCircle} />
                 </div>
 

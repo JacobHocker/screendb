@@ -179,11 +179,11 @@ export default function TvPage({ params }) {
                         <ul className='  grid grid-cols-2  justify-items-center '>
                             { 
                             tvShow.genres && tvShow.genres.map((genre) => (
-                                <Link key={genre.id} href={`/genre/${genre.id}`}>
-                                    <li  className='text-xl lg:text-2xl hover:text-amber-600 dark:hover:text-amber-400  transition ease-in-out delay-100'>
-                                        {genre.name}
-                                    </li>
-                                </Link>
+                                
+                                <li key={genre.id} className='text-xl lg:text-2xl '>
+                                    {genre.name}
+                                </li>
+                                
                             ))
                             }
                         </ul>
