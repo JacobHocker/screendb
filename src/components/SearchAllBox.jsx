@@ -22,7 +22,7 @@ export default function SearchAllBox() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         type="text"
-        placeholder="Search Enitre Database..."
+        placeholder="Search All Categories..."
         className="w-full h-14 rounded-sm placeholder-gray-500 outline-none bg-transparent flex-1"
     />
         <button
