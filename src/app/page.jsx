@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google'
 import HomeCarousel from '@/components/HomeCarousel';
+import SearchAllBox from '@/components/SearchAllBox';
 
 export const dynamic = "force-dynamic";
 
@@ -60,6 +61,7 @@ export default function Home() {
   
   return (
     <div className='pb-16'>
+      <SearchAllBox />
 
       {/*  SELECT FOR THE HOME PAGE */}
       <div className="mt-16 p-2 flex w-full justify-start ">
