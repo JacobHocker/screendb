@@ -2,29 +2,50 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import emptyTv from '../../../../../assets/emptyTv.webp';
-import CardEpisode from '@/components/CardEpisode';
+
+import Link from 'next/link';
+import CreditSeasonCarousel from '@/components/CreditSeasonCarousel';
+import CreditPersonCarousel from '@/components/CreditPersonCarousel';
 
 
 export default function SeasonPage({ params }) {
     const [season, setSeason] = useState({});
+    const [tvShow, setTvShow] = useState({});
+    const [credits, setCredits] = useState({});
     
     const tvId = params.id;
     const seasonNum = params.seasonNumber;
 
-    // Fetching the tv season information from the database
+    // Fetching the tv season &  season episodes information from the database
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}tv/${tvId}/season/${seasonNum}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
         .then((r) => r.json())
         .then((data) => { setSeason(data)})
     }, [tvId, seasonNum]);
 
-    
+    // Fetching the tv show  information from the database
+    useEffect(() => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}tv/${tvId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
+        .then((r) => r.json())
+        .then((data) => { setTvShow(data)})
+    }, [tvId]);
+
+    // Fetching the tv season credits information from the database
+    useEffect(() => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}tv/${tvId}/season/${seasonNum}/credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`, { next: { revalidate: 10000 } })
+        .then((r) => r.json())
+        .then((data) => { setCredits(data)})
+    }, [tvId, seasonNum]);
 
 
     
+
+
+    // GRABBING THE SEASON EPISODES ARRAY LENGTH
+    const episodeLen = season.episodes?.length;
 
     return (
-        <div className="pb-16">
+        <div className="mt-10 pb-16">
             {
                 season.id && 
                 <div>
@@ -73,16 +94,55 @@ export default function SeasonPage({ params }) {
                                 { season.episodes.length}
                             </p>
                         </div>
-                        {/* Episodes CONTAINER */}
-                        <div className='w-full sm:w-10/12 md:w-9/12'>
-                            {season.episodes && season.episodes.map((epi) => (
-                                <CardEpisode key={epi.id} tvId={tvId} seasonNum={seasonNum} props={epi} />
-                            ))}
+                        
+                        {/* SEASON EPISODES LINK */}
+                        <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 flex flex-col items-center md:mx-auto sm:rounded-lg'>
+                            <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Season {seasonNum} Episodes </h1>
+                            { season.episodes && 
+                            <Link href={`/tv/${tvId}/season/${seasonNum}/episodes`}>
+                                <Image
+                                src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${season.episodes[Math.floor(Math.random() * episodeLen)].still_path}`} 
+                                width={500}
+                                height={150}
+                                quality='100'
+                                className="rounded-lg mt-8 hover:border-2 border-amber-600 dark:border-amber-500"
+                                style={{
+                                    maxWidth: "100%",
+                                    height: "50%",
+                                }}
+                                placeholder="blur"
+                                blurDataURL="/spinner.svg"
+                                alt="episode poster"></Image>
+                            </Link>
+                            }
                         </div>
+
+                        
                     </div>
                 </div>
             }
-            
+                {/* MAIN CAST CAROUSEL */}
+                <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+                    <div className='flex items-center justify-center my-4'>
+                        <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Cast</h1>
+                    </div>
+                    {credits.cast && <CreditPersonCarousel props={credits.cast} />}
+                </div>
+                {/* MAIN CAST CAROUSEL */}
+                <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
+                    <div className='flex items-center justify-center my-4'>
+                        <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Crew</h1>
+                    </div>
+                    {credits.crew && <CreditPersonCarousel props={credits.crew} />}
+                </div>
+
+                {/* SEASONS FROM SHOW CAROUSEL */}
+                <div className=' mt-10 pt-4 pb-10 px-4 md:w-11/12 bg-slate-300 dark:bg-gray-600 justify-items-center md:mx-auto md:rounded-lg'>
+                    <div className='flex items-center justify-center my-4'>
+                        <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>Seasons From {tvShow.name}</h1>
+                    </div>
+                    {tvShow.seasons && <CreditSeasonCarousel props={tvShow.seasons} tvId={tvId}  />}
+                </div>
         </div>
     )
 }

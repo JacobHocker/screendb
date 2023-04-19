@@ -116,7 +116,7 @@ export default function EpisodePage({ params }) {
                     {credits.crew && <CreditPersonCarousel props={episode.crew} />}
                 </div>
 
-                {/* CREW CAROUSEL */}
+                {/* EPISODE FROM SEASON CAROUSEL */}
                 <div className=' mt-10 pt-4 pb-10 px-4 md:w-11/12 bg-slate-300 dark:bg-gray-600 justify-items-center md:mx-auto md:rounded-lg'>
                     <div className='flex items-center justify-center my-4'>
                         <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl items-center'>More From Season {seasonNum}</h1>
