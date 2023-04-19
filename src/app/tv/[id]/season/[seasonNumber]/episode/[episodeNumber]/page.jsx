@@ -38,7 +38,6 @@ export default function EpisodePage({ params }) {
         .then((data) => { setSeason(data)})
     }, [tvId, seasonNum]);
 
-    console.log(season)
     return (
         <div className="w-full pb-16">
             {

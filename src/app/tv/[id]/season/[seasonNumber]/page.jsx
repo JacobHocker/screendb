@@ -45,10 +45,10 @@ export default function SeasonPage({ params }) {
     const episodeLen = season.episodes?.length;
 
     return (
-        <div className="mt-10 pb-16">
+        <div className="w-full mt-10 pb-16">
             {
                 season.id && 
-                <div>
+                <div className='w-full'>
                     <div className='p-4 md:pt-8 flex flex-col md:grid grid-cols-2 items-center content-center max-w-6xl mx-auto md:space-x-6'>
                         {
                             season.poster_path === null ?
@@ -95,32 +95,33 @@ export default function SeasonPage({ params }) {
                             </p>
                         </div>
                         
-                        {/* SEASON EPISODES LINK */}
-                        <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 flex flex-col items-center md:mx-auto sm:rounded-lg'>
-                            <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Season {seasonNum} Episodes </h1>
-                            { season.episodes && 
-                            <Link href={`/tv/${tvId}/season/${seasonNum}/episodes`}>
-                                <Image
-                                src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${season.episodes[Math.floor(Math.random() * episodeLen)].still_path}`} 
-                                width={500}
-                                height={150}
-                                quality='100'
-                                className="rounded-lg mt-8 hover:border-2 border-amber-600 dark:border-amber-500"
-                                style={{
-                                    maxWidth: "100%",
-                                    height: "50%",
-                                }}
-                                placeholder="blur"
-                                blurDataURL="/spinner.svg"
-                                alt="episode poster"></Image>
-                            </Link>
-                            }
-                        </div>
+                        
 
                         
                     </div>
                 </div>
             }
+                {/* SEASON EPISODES LINK */}
+                <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 flex flex-col items-center md:mx-auto sm:rounded-lg'>
+                    <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl'>Season {seasonNum} Episodes </h1>
+                    { season.episodes && 
+                    <Link href={`/tv/${tvId}/season/${seasonNum}/episodes`}>
+                        <Image
+                        src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${season.episodes[Math.floor(Math.random() * episodeLen)].still_path}`} 
+                        width={500}
+                        height={150}
+                        quality='100'
+                        className="rounded-lg mt-8 hover:border-2 border-amber-600 dark:border-amber-500"
+                        style={{
+                            maxWidth: "100%",
+                            height: "50%",
+                        }}
+                        placeholder="blur"
+                        blurDataURL="/spinner.svg"
+                        alt="episode poster"></Image>
+                    </Link>
+                    }
+                </div>
                 {/* MAIN CAST CAROUSEL */}
                 <div className=' mt-8 pt-4 pb-10 px-4 md:w-11/12 bg-slate-400 dark:bg-gray-800 justify-items-center md:mx-auto md:rounded-lg'>
                     <div className='flex items-center justify-center my-4'>
