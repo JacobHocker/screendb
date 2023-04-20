@@ -9,7 +9,7 @@ export default function CardSeason({ props, tvId }) {
                 <div className='grid grid-cols-3'>
                     {
                         props.poster_path !== null ?
-                        <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${props.poster_path || props.backdrop_path}`} alt={props.season_number} className="w-full h-auto object-cover  object-top sm:rounded-tl-lg sm:rounded-bl-lg" />
+                        <img src={`${process.env.NEXT_PUBLIC_POSTER_PATH}${props.poster_path || props.backdrop_path}`} alt={props.season_number} className="w-full h-full object-cover  object-top sm:rounded-tl-lg sm:rounded-bl-lg" />
                         :
                         <Image src={emptyTv}
                                 alt="empty" className="w-full h-full  object-cover" />
