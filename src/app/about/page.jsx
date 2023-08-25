@@ -18,7 +18,7 @@ export default function About() {
                     <h1 className="font-semibold text-xl sm:text-2xl ">Created By: Jacob Hocker</h1>
                 </div>
                 <div className="mt-8  w-full gap-4 justify-items-center grid grid-cols-2 justify-evenly">
-                    <Link href="https://jacobhocker.netlify.app/" target='_blank' title="Portfolio">
+                    <Link href="https://jacob-hocker.vercel.app/" target='_blank' title="Portfolio">
                         <BsFillFilePersonFill className='text-3xl sm:text-4xl md:text-5xl hover:text-amber-500 ' />
                     </Link>
                     <Link href="https://github.com/JacobHocker" target='_blank' title="GitHub">
