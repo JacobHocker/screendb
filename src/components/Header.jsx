@@ -40,9 +40,9 @@ export default function Header() {
                     <Link href="/">
                         {
                             mounted && currentTheme === "dark" ? 
-                            (<Image src={LogoLt} priority='true' alt='EntSpotLt' className='w-14 sm:w-16 md:w-20 mr-3'/>)
+                            (<Image src={LogoLt} priority='true' alt='EntSpotLt' className='w-16 sm:w-20 md:w-24 mr-2'/>)
                             :
-                            (<Image src={LogoDk} priority='true' alt='EntSpotDk' className='w-14 sm:w-16 md:w-20 mr-3'/>)
+                            (<Image src={LogoDk} priority='true' alt='EntSpotDk' className='w-16 sm:w-20 md:w-24  mr-2'/>)
                         }
                     </Link>
                 </div>
