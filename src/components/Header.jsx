@@ -8,8 +8,8 @@ import { CgScreen } from 'react-icons/cg';
 
 import Link from 'next/link';
 import Image from 'next/image';
-import LogoLt from '../assets/EntSpotLT.png';
-import LogoDk from '../assets/EntSpotDK.png';
+import LogoLt from '../assets/screenDB-white.png';
+import LogoDk from '../assets/screenDB-black.png';
 import DarkModeSwitch from './DarkModeSwitch';
 import { useState, useEffect } from 'react';
 

@@ -5,7 +5,7 @@ import Providers from './Providers';
 
 export async function generateMetadata({ params }){
   return {
-    title: "EntSpot",
+    title: "Screen DB",
     description: "One stop shop for all you entertainment knowledge!",
     icons: {
       icon: { url: "/favicon-32x32.png", type:"image/png"},
