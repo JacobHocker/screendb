@@ -1,6 +1,12 @@
 # Screen DB
 > The one stop shop for all entertainment needs.
 
+### [Linked In](https://www.linkedin.com/in/jacobhocker/) 
+
+### [Portfolio](https://jacob-hocker.vercel.app/)
+
+### [Medium](https://jacobhocker.medium.com/)
+ 
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./src/assets/screenDB-white.png">
@@ -147,3 +153,6 @@
 - Guest Star List (Person Link)
 - Crew List (Person Link)
 - Other Episode List (Episode Link)
+
+
+# Socials
